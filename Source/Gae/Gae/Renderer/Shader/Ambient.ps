@@ -1,0 +1,34 @@
+// Pixel Shader for Parallel Lighting.  
+
+float4	g_f4Color;	// Mesh color
+
+sampler2D textureDiffuse : register(s0) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = ANISOTROPIC;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+struct PS_INPUT
+{
+	float2 f2UV : TEXCOORD0;	// UV	
+};
+
+// Pixel shader output structure
+struct PS_OUTPUT
+{
+    float4 Color   : COLOR0;
+};
+
+float4	main(const PS_INPUT pIn) : COLOR
+{
+	// Take the texture sample data.
+	//float fColorDiffuse = tex2D(textureDiffuse, pIn.f2UV);
+	float4 f4Final = g_f4Color;// * fColorDiffuse;
+	f4Final.w = tex2D(textureDiffuse, pIn.f2UV).w;	// Needed for correct alpha values
+	
+	return f4Final;
+}

@@ -1,0 +1,181 @@
+ // Pixel Shader for Point Lighting + Parallax Mapping.
+
+float2 g_f2TexelSize;
+
+sampler textureDiffuse : register(s3) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler textureSpecular : register(s1) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler textureNormal : register(s2) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler textureHeight : register(s0) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+struct PS_INPUT
+{
+	float2 f2UV : TEXCOORD0;	// UV
+	float4 f4PixelPos : TEXCOORD1;	// Pixel position in world
+	float4 f4LightDir : TEXCOORD2;	// Light dir in texture space plus atenuation value in the w component.
+	float3 f3ViewDir : TEXCOORD3;	// Light dir in texture space plus atenuation value in the w component.
+};
+
+float4	main(const PS_INPUT pIn) : COLOR
+{
+	// Using the heightmaps of Quake4 (xxxxxxxx_h.tga files)
+	float fScale = 1.0f;
+	
+	float fDepth = tex2D(textureSpecular, pIn.f2UV).w;
+	float2 f2HalfView = normalize(pIn.f3ViewDir.xy);
+	float dddx = ddx(pIn.f2UV.x);
+	float dddy = ddy(pIn.f2UV.y);
+	for(int i = 0; i < 16; i++)
+	{
+		float fDepthNew = tex2Dgrad(textureSpecular, pIn.f2UV + f2HalfView, dddx, dddy).w;
+		if (fDepthNew > fDepth)
+		{
+			i = fScale * 16;
+		}
+		else
+		{
+			fDepth = fDepthNew;
+			f2HalfView = normalize(pIn.f3ViewDir.xy) * i;
+		}
+	
+	}
+	
+	float2 f2UV = pIn.f2UV + f2HalfView;
+	
+	float4 f4ColorDiffuse = tex2D(textureDiffuse, f2UV);
+	float4 f4ColorSpecular = tex2D(textureSpecular, f2UV);
+	float3 f3Normal = (2.0f * tex2D(textureNormal, f2UV).rgb - 1.0f);
+	//f3Normal.b = 1.0f - f3Normal.b;
+	
+ 	float fDot = dot(normalize(pIn.f4LightDir.xyz), normalize(f3Normal)) * pIn.f4LightDir.w;
+		
+	float4 f4Color = saturate(f4ColorDiffuse * f4ColorSpecular * fDot * 4.0f);
+	
+	//float4 f4ColorFinal = tex2D(textureSpecular, pIn.f2UV).w;
+	return f4Color;
+}
+
+
+// float2 g_f2TexelSize;
+// 
+// sampler textureDiffuse : register(s3) = sampler_state
+// {
+// 	MipFilter = LINEAR;
+//     MinFilter = ANISOTROPIC;
+//     MagFilter = LINEAR;
+//     AddressU = WRAP;
+//     AddressV = WRAP;
+//     MaxAnisotropy = 16;
+// };
+// 
+// sampler textureSpecular : register(s1) = sampler_state
+// {
+// 	MipFilter = LINEAR;
+//     MinFilter = ANISOTROPIC;
+//     MagFilter = LINEAR;
+//     AddressU = WRAP;
+//     AddressV = WRAP;
+//     MaxAnisotropy = 16;
+// };
+// 
+// sampler textureNormal : register(s2) = sampler_state
+// {
+// 	MipFilter = LINEAR;
+//     MinFilter = ANISOTROPIC;
+//     MagFilter = LINEAR;
+//     AddressU = WRAP;
+//     AddressV = WRAP;
+//     MaxAnisotropy = 16;
+// };
+// 
+// sampler textureHeight : register(s0) = sampler_state
+// {
+// 	MipFilter = LINEAR;
+//     MinFilter = ANISOTROPIC;
+//     MagFilter = LINEAR;
+//     AddressU = WRAP;
+//     AddressV = WRAP;
+//     MaxAnisotropy = 16;
+// };
+// 
+// struct PS_INPUT
+// {
+// 	float2 f2UV : TEXCOORD0;	// UV
+// 	float4 f4PixelPos : TEXCOORD1;	// Pixel position in world
+// 	float4 f4LightDir : TEXCOORD2;	// Light dir in texture space plus atenuation value in the w component.
+// 	float3 f3ViewDir : TEXCOORD3;	// Light dir in texture space plus atenuation value in the w component.
+// };
+// 
+// float4	main(const PS_INPUT pIn) : COLOR
+// {
+// 	
+// 
+// 	///////////////////////////////////////////////////////////
+// 	// For quake4 parallax textures mod v2.0
+// 	///////////////////////////////////////////////////////////
+// 	float fScale = 2.0f;
+// 	//float fDepth = 2.0f * (1.0f - (2.0f * tex2D(textureNormal, pIn.f2UV) - 1.0f).b) - 1.0f;
+// 	float fDepth = 1.0f - (2.0f * tex2D(textureNormal, pIn.f2UV) - 1.0f).b;
+// 	float2 f2HalfView = normalize(pIn.f4LightDir).xy * 0.05f * fDepth * fScale;
+// 	
+// 	for(uint i = 0; i < fScale * 4; i++)
+// 	{
+// 		//fDepth = (2.0f * ((1.0f - (2.0f * tex2D(textureNormal, pIn.f2UV + f2HalfView) - 1.0f).b)) -1.0f) * 0.2f;
+// 		fDepth = (1.0f - (2.0f * tex2D(textureNormal, pIn.f2UV + f2HalfView) - 1.0f).b) * 0.2f;
+// 		f2HalfView = normalize(pIn.f4LightDir).xy * 0.05f * fDepth * fScale;
+// 	}
+// 	///////////////////////////////////////////////////////////
+// 	
+// 	float2 f2UV = pIn.f2UV + f2HalfView;	// Light dir in this case is the same as eye.	
+// 
+// 	float4 f4ColorDiffuse = tex2D(textureDiffuse, f2UV);
+// 	float4 f4ColorSpecular = tex2D(textureSpecular, f2UV);
+// 	float3 f3Normal = (2.0f * tex2D(textureNormal, f2UV).rgb - 1.0f);
+// 	
+// 		
+// 	///////////////////////////////////////////////////////////
+// 	// For quake4 parallax textures mod v2.0
+// 	///////////////////////////////////////////////////////////
+// 	f3Normal.b = 1.0f - f3Normal.b;	
+// 	///////////////////////////////////////////////////////////
+// 	
+//  	float fDot = dot(normalize(pIn.f4LightDir.xyz), normalize(f3Normal)) * pIn.f4LightDir.w;	
+// 			
+// 	float4 f4Color = saturate(f4ColorDiffuse * f4ColorSpecular * fDot * 4.0f);
+// 	
+// 	return f4Color;
+// }

@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="extern">
+      <UniqueIdentifier>{c22424b6-8d56-40d4-b58e-530332f4a9eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header\Core">
+      <UniqueIdentifier>{4f7989c7-dabc-4e96-a97f-24abafaa6b86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Util">
+      <UniqueIdentifier>{92ca13f4-e27e-4440-9ea4-26727d671624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Resources">
+      <UniqueIdentifier>{162dec8e-5b24-4c6e-be1f-a2079c6b0a58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Universe">
+      <UniqueIdentifier>{f7593388-26ec-475c-ad52-ce87ef6f637c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Input">
+      <UniqueIdentifier>{877060ae-fadf-47e2-943b-3c2f337fc398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Input\Windows">
+      <UniqueIdentifier>{5698e296-0e92-4810-a07f-6b7b0400b1b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Renderer">
+      <UniqueIdentifier>{a6a9f1fd-0e05-4237-8de5-e081f04a50f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Renderer\Shaders">
+      <UniqueIdentifier>{68f0442c-4c69-4bde-b04f-4675a5088477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Graphics">
+      <UniqueIdentifier>{7ac5d55d-23c9-4236-81e9-b2fa4bc38f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Graphics\Geometry">
+      <UniqueIdentifier>{15ad6ef7-1431-4e6e-9404-88a2eb48d8f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Entities">
+      <UniqueIdentifier>{491340cd-ba5d-4b3c-b2df-0fd697576851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Gifts">
+      <UniqueIdentifier>{dfaf6e16-d770-4cfb-a088-8c9eb5e0553b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Gifts\Quake4">
+      <UniqueIdentifier>{945c475c-9dec-4107-bc79-2dfa4d6cd0b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Gifts\Modifiers">
+      <UniqueIdentifier>{3e4538fd-cedd-43ee-a933-4839ad944657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{3cebd831-19bf-4ebb-9c31-c2fb63ceec34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Util">
+      <UniqueIdentifier>{feeb37db-9181-452e-a64e-43dbb00b8be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Resources">
+      <UniqueIdentifier>{e211fd57-1c5b-42c0-b2ff-3539a46143c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Universe">
+      <UniqueIdentifier>{c78b9b11-14de-41d3-bcce-a6e728d0c681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Input">
+      <UniqueIdentifier>{cc6456ff-5b77-4766-884e-53750d415893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Input\Windows">
+      <UniqueIdentifier>{8bc44106-65f1-475c-a69e-552f287d9f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{dbd00612-4bd2-407b-a194-fb8b3fc8b52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics">
+      <UniqueIdentifier>{61a59d9e-545d-43a4-9222-c38998040fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Geometry">
+      <UniqueIdentifier>{fb2c6be5-ae05-450f-af08-f60c183481e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Entities">
+      <UniqueIdentifier>{a155f2aa-f6fb-4bab-9094-d742a68fed6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gifts">
+      <UniqueIdentifier>{08600ec6-2957-4923-84ea-5206afe1372e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gifts\Quake4">
+      <UniqueIdentifier>{384a04c5-8d4f-4190-bf82-dd60ec10988d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gifts\Modifiers">
+      <UniqueIdentifier>{5fbe4e5f-dde9-4d1e-bcbe-0323af728309}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Application.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ApplicationConfig.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ApplicationWindow.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Clock.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Util\CRC32.cpp">
+      <Filter>Source\Core\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Util\Parser.cpp">
+      <Filter>Source\Core\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Resources\ResManager.cpp">
+      <Filter>Source\Core\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Resources\Texture.cpp">
+      <Filter>Source\Core\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Universe\Manager.cpp">
+      <Filter>Source\Core\Universe</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Universe\Portal.cpp">
+      <Filter>Source\Core\Universe</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Universe\PortalArea.cpp">
+      <Filter>Source\Core\Universe</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Input\Windows\Input.cpp">
+      <Filter>Source\Core\Input\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\DirectX9.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Driver.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\OpenGL.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Material.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\MultiMesh.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Node.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Geometry\AABB.cpp">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Geometry\Frustum.cpp">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Geometry\Intersections.cpp">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Geometry\Plane.cpp">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Geometry\Procedural.cpp">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Camera.cpp">
+      <Filter>Source\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Entity3D.cpp">
+      <Filter>Source\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Light.cpp">
+      <Filter>Source\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Modifier.cpp">
+      <Filter>Source\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Gifts\Quake4\MapLoader.cpp">
+      <Filter>Source\Gifts\Quake4</Filter>
+    </ClCompile>
+    <ClCompile Include="Gifts\Modifiers\FreeMovement.cpp">
+      <Filter>Source\Gifts\Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Mesh.cpp">
+      <Filter>Header\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Geometry\ShadowVolume.cpp">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\IEntity.cpp">
+      <Filter>Source\Entities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Application.inl">
+      <Filter>Source\Core</Filter>
+    </None>
+    <None Include="Core\Clock.inl">
+      <Filter>Source\Core</Filter>
+    </None>
+    <None Include="Core\Util\CRC32.inl">
+      <Filter>Source\Core\Util</Filter>
+    </None>
+    <None Include="Core\Util\Parser.inl">
+      <Filter>Source\Core\Util</Filter>
+    </None>
+    <None Include="Core\Resources\ResRefCount.inl">
+      <Filter>Source\Core\Resources</Filter>
+    </None>
+    <None Include="Core\Resources\Texture.inl">
+      <Filter>Source\Core\Resources</Filter>
+    </None>
+    <None Include="Core\Universe\Manager.inl">
+      <Filter>Source\Core\Universe</Filter>
+    </None>
+    <None Include="Core\Universe\Portal.inl">
+      <Filter>Source\Core\Universe</Filter>
+    </None>
+    <None Include="Core\Universe\PortalArea.inl">
+      <Filter>Source\Core\Universe</Filter>
+    </None>
+    <None Include="Core\Input\Windows\Manager.inl">
+      <Filter>Source\Core\Input\Windows</Filter>
+    </None>
+    <None Include="Renderer\Driver.inl">
+      <Filter>Source\Renderer</Filter>
+    </None>
+    <None Include="Graphics\Material.inl">
+      <Filter>Source\Graphics</Filter>
+    </None>
+    <None Include="Graphics\Mesh.inl">
+      <Filter>Source\Graphics</Filter>
+    </None>
+    <None Include="Graphics\MultiMesh.inl">
+      <Filter>Source\Graphics</Filter>
+    </None>
+    <None Include="Graphics\Node.inl">
+      <Filter>Source\Graphics</Filter>
+    </None>
+    <None Include="Graphics\Geometry\AABB.inl">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </None>
+    <None Include="Graphics\Geometry\IndexBuffer.inl">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </None>
+    <None Include="Graphics\Geometry\Sphere.inl">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </None>
+    <None Include="Graphics\Geometry\VertexBuffer.inl">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </None>
+    <None Include="Entities\Camera.inl">
+      <Filter>Source\Entities</Filter>
+    </None>
+    <None Include="Gifts\Quake4\MapLoader.inl">
+      <Filter>Source\Gifts\Quake4</Filter>
+    </None>
+    <None Include="Gifts\Modifiers\FreeMovement.inl">
+      <Filter>Source\Gifts\Modifiers</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+    <None Include="Graphics\Geometry\ShadowVolume.inl">
+      <Filter>Source\Graphics\Geometry</Filter>
+    </None>
+    <None Include="Entities\IEntity.inl">
+      <Filter>Source\Entities</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Gae.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Application.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ApplicationConfig.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ApplicationWindow.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Clock.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Core.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Util\Assert.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Util\ClassHelpers.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Util\CRC32.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Util\Log.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Util\Misc.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Util\Parser.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Resources\ResManager.h">
+      <Filter>Header\Core\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Resources\Resource.h">
+      <Filter>Header\Core\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Resources\ResRefCount.h">
+      <Filter>Header\Core\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Resources\Texture.h">
+      <Filter>Header\Core\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Universe\IPortalAreaDetermination.h">
+      <Filter>Header\Core\Universe</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Universe\Manager.h">
+      <Filter>Header\Core\Universe</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Universe\Portal.h">
+      <Filter>Header\Core\Universe</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Universe\PortalArea.h">
+      <Filter>Header\Core\Universe</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input\Input.h">
+      <Filter>Header\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input\Windows\Input.h">
+      <Filter>Header\Core\Input\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\DirectX9.h">
+      <Filter>Header\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Driver.h">
+      <Filter>Header\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\IDrawDebug.h">
+      <Filter>Header\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGL.h">
+      <Filter>Header\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Header\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Graphics.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Material.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Mesh.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\MultiMesh.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Node.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\AABB.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\Frustum.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\IndexBuffer.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\Intersections.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\Plane.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\Procedural.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\Sphere.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\VertexBuffer.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\VertexTypes.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Camera.h">
+      <Filter>Header\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Entities.h">
+      <Filter>Header\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Entity3D.h">
+      <Filter>Header\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\IEntity.h">
+      <Filter>Header\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Light.h">
+      <Filter>Header\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Modifier.h">
+      <Filter>Header\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Gifts\Gifts.h">
+      <Filter>Header\Gifts</Filter>
+    </ClInclude>
+    <ClInclude Include="Gifts\Quake4\BSPTree.h">
+      <Filter>Header\Gifts\Quake4</Filter>
+    </ClInclude>
+    <ClInclude Include="Gifts\Quake4\MapLoader.h">
+      <Filter>Header\Gifts\Quake4</Filter>
+    </ClInclude>
+    <ClInclude Include="Gifts\Modifiers\FreeMovement.h">
+      <Filter>Header\Gifts\Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry\ShadowVolume.h">
+      <Filter>Header\Graphics\Geometry</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\Extern\ksignal\lib\ksignal.lib">
+      <Filter>extern</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gae.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Renderer\Shader\ParallelLighting.ps">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\ParallelLighting.vs">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointBumpLighting.ps">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointBumpLighting.vs">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointLighting.ps">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointLighting.vs">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointParallaxLighting.ps">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointParallaxLighting.vs">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Ambient.ps">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Ambient.vs">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Diffuse.ps">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Diffuse.vs">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointDiffuseLighting.ps">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointDiffuseLighting.vs">
+      <Filter>Header\Renderer\Shaders</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

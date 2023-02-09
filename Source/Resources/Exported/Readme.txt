@@ -1,0 +1,2 @@
+   Here the same folder structure as in .\Source\Resources\Source must exist in order the engine be able to load correctly the resource files needed.
+   This folder is intendeed to be used only for debug and/or testing of our project.

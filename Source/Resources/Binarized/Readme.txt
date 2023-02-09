@@ -1,0 +1,2 @@
+   Here the same folder structure as in .\Source\Resources\Source must exist in order the engine be able to load correctly the resource files needed.
+   The resources that exist here will be the final ones to be packed for the RELEASE/RETAIL version of the project.

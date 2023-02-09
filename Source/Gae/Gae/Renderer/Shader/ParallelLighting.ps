@@ -1,0 +1,60 @@
+// Pixel Shader for Parallel Lighting.  
+
+//float4x4	m44fViewProj;	// View x Proj Matrix
+
+sampler textureDiffuse : register(s3) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler textureSpecular : register(s1) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler textureNormal : register(s2) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+struct PS_INPUT
+{
+	float2 f2UV : TEXCOORD0;	// UV
+	float3 f3LightDir : TEXCOORD1;	// Light dir
+	float3 f3Normal : TEXCOORD2;	// Normal
+	float4 f4Color : COLOR;	// Normal
+};
+
+float4	main(const PS_INPUT pIn) : COLOR
+{
+	float4 f4ColorDiffuse = tex2D(textureDiffuse, pIn.f2UV);
+	//float4 f4ColorSpecular = tex2D(textureSpecular, pIn.f2UV);
+	
+	// Calculates the light against the normal.
+	float fDot = dot(pIn.f3Normal, pIn.f3LightDir);
+	
+	// Output the color based in the light angle.
+	float4 f4Color;
+	//f4Color.xyz = f4ColorDiffuse.xyz * f4ColorSpecular.xyz * fDot * 4.0f;
+	f4Color.xyz = f4ColorDiffuse.xyz * fDot;
+	//f4Color.w = pIn.f4Color.w;
+	//f4Color.w = f4ColorDiffuse.w;
+	f4Color.w = 0;
+	
+	return f4Color;
+}

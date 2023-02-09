@@ -1,0 +1,36 @@
+// Pixel Shader for Point Lighting + Diffuse Mapping.
+
+float4 g_f4LightColor;	// Light Color
+
+sampler textureDiffuse : register(s0) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = ANISOTROPIC;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+struct PS_INPUT
+{
+	float2 f2UV : TEXCOORD0;	// UV
+	float4 f4ScaledLightVertexDirection : TEXCOORD1;	// Light dir scaled by the lighting ellipsoid volume
+	
+};
+
+float4	main(const PS_INPUT pIn) : COLOR
+{	
+	// Take the texture sample data.
+	float4 f4ColorDiffuse = tex2D(textureDiffuse, pIn.f2UV);
+ 	
+ 	// Attenuation factor based in the ellipsoid (or sphere)'s scale.
+ 	float fAtt = saturate(1.0f - dot(pIn.f4ScaledLightVertexDirection.xyz, pIn.f4ScaledLightVertexDirection.xyz));
+ 	 	
+ 	float4 f4ColorDiffuseFinal = f4ColorDiffuse * g_f4LightColor * fAtt;
+ 		
+	float4 f4Color = f4ColorDiffuseFinal;
+	f4Color.w = f4ColorDiffuse.w; // Needed for correct alpha values
+	
+	return f4Color;
+}

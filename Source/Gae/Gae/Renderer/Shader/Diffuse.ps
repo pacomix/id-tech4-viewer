@@ -1,0 +1,30 @@
+// Pixel Shader for Diffuse Mapping.
+
+sampler2D textureDiffuse : register(s0) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = ANISOTROPIC;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+struct PS_INPUT
+{
+	float2 f2UV : TEXCOORD0;	// UV	
+};
+
+// Pixel shader output structure
+struct PS_OUTPUT
+{
+    float4 Color   : COLOR0;
+};
+
+float4	main(const PS_INPUT pIn) : COLOR
+{	
+	// Take the texture sample data.
+	float4 f4ColorDiffuse = tex2D(textureDiffuse, pIn.f2UV);
+	
+	return f4ColorDiffuse;
+}

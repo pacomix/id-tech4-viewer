@@ -1,0 +1,158 @@
+// Pixel Shader for Point Lighting + Normal Mapping.
+
+float4 g_f4LightColor;	// Light Color
+bool g_bUseParallax;
+bool g_bShowHeight;
+bool g_bShowSpecular;
+float	fTexelsPerSide		= sqrt(512.0 * 512.0 * 2);
+
+sampler2D textureDiffuse : register(s0) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler2D textureSpecular : register(s1) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler2D textureNormal : register(s2) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+sampler2D textureHeight : register(s3) = sampler_state
+{
+	MipFilter = LINEAR;
+    MinFilter = ANISOTROPIC;
+    MagFilter = LINEAR;
+    AddressU = WRAP;
+    AddressV = WRAP;
+    MaxAnisotropy = 16;
+};
+
+struct PS_INPUT
+{
+	float2 f2UV : TEXCOORD0;	// UV
+	float3 f3ScaledLightVertexDirection : TEXCOORD1;	// Light dir scaled by the lighting ellipsoid volume. Used for 3axis independent attenuation.
+	float3 f3LightVtxDir : TEXCOORD2;	// Light dir in texture space. w component unused.
+	float3 f3ViewVtxDir : TEXCOORD3;	// ViewVtx dir in texture space.
+	float3 f3Normal : TEXCOORD4;	// Triangle's Normal in texture space
+};
+
+float4	main(const PS_INPUT pIn) : COLOR
+{
+	float2 f2UV = pIn.f2UV;
+ 	
+	if (g_bUseParallax == true)
+	{
+		float3 f3ViewVtxDirNormalized = normalize(pIn.f3ViewVtxDir);
+		// Addapt number of samples depending on distance. Deactivate it completely for a distance >256.0f units
+		int nNumSamples = 
+		(int)
+			lerp(	max(32.0f - ((length(pIn.f3ViewVtxDir)/512.0f) * 32.0f), 0.0f),
+					0.0f, 
+					dot( -f3ViewVtxDirNormalized, normalize(pIn.f3Normal) ) );	// calculate dynamic number of samples (Tatarchuk's method)
+	
+		if ( nNumSamples > 0)
+		{	// Parallax. Calculate the UV coordinate for the rest.
+			float fParallaxLimit = (length(-pIn.f3ViewVtxDir.xy) / -pIn.f3ViewVtxDir.z) * 0.04f; //Heightmap scale = 0.04f;
+			
+			float2 vOffset = f3ViewVtxDirNormalized.xy * fParallaxLimit;
+			
+			float2 fStepSize = 1.0f / (float)nNumSamples;
+			
+			float2 dx, dy;
+			dx = ddx( pIn.f2UV);
+			dy = ddy( pIn.f2UV);
+			
+			float2 vOffsetStep = fStepSize * vOffset;
+			float2 vLastUV = float2( 0, 0 );
+			
+			float vCurrHeight;
+			float vLastHeight;
+
+			float stepHeight = 1.0f;	
+			int nCurrSample = 0;
+
+			while ( nCurrSample < nNumSamples )
+			{
+				vCurrHeight = tex2Dgrad( textureSpecular, f2UV, dx, dy ).a;  // sample the current texcoord offset
+				if ( vCurrHeight > stepHeight )
+				{	// calculate the linear intersection point
+					float Ua = (vLastHeight - (stepHeight+fStepSize)) / ( fStepSize + (vCurrHeight - vLastHeight));
+					f2UV = vLastUV + Ua * vOffsetStep;
+					nCurrSample = nNumSamples + 1;												// exit the while loop
+				}
+				else
+				{
+					nCurrSample++;							// increment to the next sample
+					stepHeight -= fStepSize;				// change the required height-map height
+					vLastUV = f2UV;				// remember this texcoord offset for next time
+					f2UV += vOffsetStep;				// increment to the next texcoord offset
+					vLastHeight = vCurrHeight;
+				}
+			}
+		}
+	}
+
+	// Take the texture sample data.
+	float4 f4ColorDiffuse = tex2D(textureDiffuse, f2UV);
+	float4 f4ColorSpecular = tex2D(textureSpecular, f2UV);
+	float3 f3Normal = normalize((2.0f * tex2D(textureNormal, f2UV).rgb - 1.0f));	// Normal from normal map.
+ 	
+ 	// Attenuation factor based in the ellipsoid (or sphere)'s scale.
+ 	float fAtt = saturate(1.0f - dot(pIn.f3ScaledLightVertexDirection, pIn.f3ScaledLightVertexDirection));
+ 	
+ 	float3 f3LDIR = normalize(pIn.f3LightVtxDir);
+ 	float3 f3LDIRHalf = normalize(pIn.f3ViewVtxDir + pIn.f3LightVtxDir);
+ 	float fDotLN = dot(f3Normal, f3LDIR );
+ 	float fDotLNH = dot(f3Normal, f3LDIRHalf);
+ 	float fDot = fDotLN * fAtt;
+ 	
+ 	float fDotSpecular = fDotLNH * fAtt;	// Dot product half light vector with the pixel's normal.
+ 	float fShininess = pow(fDotLNH, f4ColorSpecular.r * 256.0f);
+ 	
+ 	float4 f4ColorDiffuseFinal = f4ColorDiffuse * fDot;
+ 	float4 f4ColorSpecularFinal = f4ColorSpecular * fDotSpecular * fShininess;
+ 	//float4 f4ColorSpecularFinal = fDotSpecular * fShininess;
+	
+	float4 f4Color = (f4ColorDiffuseFinal * g_f4LightColor) + f4ColorSpecularFinal;
+	f4Color.w = f4ColorDiffuse.w;	// Alpha value of the diffuse texture.
+	
+	if(g_bShowHeight)
+	{
+		if(g_bUseParallax)
+		{
+			f4Color = tex2D(textureSpecular, f2UV).a;
+		}
+		else
+		{
+			f4Color = 0.0f;
+		}
+		f4Color.w = f4ColorDiffuse.w;	// Alpha value of the diffuse texture.
+	}
+	
+	if (g_bShowSpecular)
+	{
+		f4Color = tex2D(textureSpecular, f2UV);
+		f4Color.w = f4ColorDiffuse.w;	// Alpha value of the diffuse texture.
+	}
+	
+	return f4Color;
+}

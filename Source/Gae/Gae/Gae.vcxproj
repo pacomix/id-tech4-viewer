@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{71B702AE-266B-4480-9834-DED83C95D118}</ProjectGuid>
+    <RootNamespace>Gae</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v90</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v90</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.31515.66</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\..\Output\Artifacts\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\Output\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\..\Output\Artifacts\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\Output\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;..\..\..\Extern\ksignal\include;..\..\..\Source\Gae\Gae;..\..\..\Extern\eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;NOMINMAX;D3D_DEBUG_INFO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <PreprocessKeepComments>false</PreprocessKeepComments>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>d3dx9.lib;DxErr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuild>
+      <Command>call %(RelativeDir)CmpShader.bat "$(DXSDK_DIR)Utilities\bin\x86\fxc.exe" %(RelativeDir) %(Filename) %(Extension) $(OutputPath)</Command>
+      <Message>
+      </Message>
+      <Outputs>$(OutputPath)%(Filename)%(Extension)c</Outputs>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;..\..\..\Extern\ksignal\include;..\..\..\Source\Gae\Gae;..\..\..\Extern\eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;NOMINMAX;_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>d3dx9.lib;DxErr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuild>
+      <Command>call %(RelativeDir)CmpShader.bat "$(DXSDK_DIR)Utilities\bin\x86\fxc.exe" %(RelativeDir) %(Filename) %(Extension) $(OutputPath)</Command>
+      <Message>
+      </Message>
+      <Outputs>$(OutputPath)%(Filename)%(Extension)c</Outputs>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="Core\ApplicationConfig.cpp" />
+    <ClCompile Include="Core\ApplicationWindow.cpp" />
+    <ClCompile Include="Core\Clock.cpp" />
+    <ClCompile Include="Core\Input\Windows\Input.cpp" />
+    <ClCompile Include="Core\Resources\ResManager.cpp" />
+    <ClCompile Include="Core\Resources\Texture.cpp" />
+    <ClCompile Include="Core\Universe\Manager.cpp" />
+    <ClCompile Include="Core\Universe\Portal.cpp" />
+    <ClCompile Include="Core\Universe\PortalArea.cpp" />
+    <ClCompile Include="Core\Util\CRC32.cpp" />
+    <ClCompile Include="Core\Util\Parser.cpp" />
+    <ClCompile Include="Entities\Camera.cpp" />
+    <ClCompile Include="Entities\Entity3D.cpp" />
+    <ClCompile Include="Entities\IEntity.cpp" />
+    <ClCompile Include="Entities\Light.cpp" />
+    <ClCompile Include="Entities\Modifier.cpp" />
+    <ClCompile Include="Gifts\Modifiers\FreeMovement.cpp" />
+    <ClCompile Include="Gifts\Quake4\MapLoader.cpp" />
+    <ClCompile Include="Graphics\Geometry\AABB.cpp" />
+    <ClCompile Include="Graphics\Geometry\Frustum.cpp" />
+    <ClCompile Include="Graphics\Geometry\Intersections.cpp" />
+    <ClCompile Include="Graphics\Geometry\Plane.cpp" />
+    <ClCompile Include="Graphics\Geometry\Procedural.cpp" />
+    <ClCompile Include="Graphics\Geometry\ShadowVolume.cpp" />
+    <ClCompile Include="Graphics\Material.cpp" />
+    <ClCompile Include="Graphics\Mesh.cpp" />
+    <ClCompile Include="Graphics\MultiMesh.cpp" />
+    <ClCompile Include="Graphics\Node.cpp" />
+    <ClCompile Include="Renderer\DirectX9.cpp" />
+    <ClCompile Include="Renderer\Driver.cpp" />
+    <ClCompile Include="Renderer\OpenGL.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Application.inl" />
+    <None Include="Core\Clock.inl" />
+    <None Include="Core\Input\Windows\Manager.inl" />
+    <None Include="Core\Resources\ResRefCount.inl" />
+    <None Include="Core\Resources\Texture.inl" />
+    <None Include="Core\Universe\Manager.inl" />
+    <None Include="Core\Universe\Portal.inl" />
+    <None Include="Core\Universe\PortalArea.inl" />
+    <None Include="Core\Util\CRC32.inl" />
+    <None Include="Core\Util\Parser.inl" />
+    <None Include="Entities\Camera.inl" />
+    <None Include="Entities\IEntity.inl" />
+    <None Include="Gifts\Modifiers\FreeMovement.inl" />
+    <None Include="Gifts\Quake4\MapLoader.inl" />
+    <None Include="Graphics\Geometry\AABB.inl" />
+    <None Include="Graphics\Geometry\IndexBuffer.inl" />
+    <None Include="Graphics\Geometry\ShadowVolume.inl" />
+    <None Include="Graphics\Geometry\Sphere.inl" />
+    <None Include="Graphics\Geometry\VertexBuffer.inl" />
+    <None Include="Graphics\Material.inl" />
+    <None Include="Graphics\Mesh.inl" />
+    <None Include="Graphics\MultiMesh.inl" />
+    <None Include="Graphics\Node.inl" />
+    <None Include="ReadMe.txt" />
+    <None Include="Renderer\Driver.inl" />
+    <CustomBuild Include="Renderer\Shader\ParallelLighting.ps">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\ParallelLighting.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointBumpLighting.ps">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointBumpLighting.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointLighting.ps">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointLighting.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointParallaxLighting.ps">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointParallaxLighting.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Ambient.ps">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Ambient.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Diffuse.ps">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\Diffuse.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointDiffuseLighting.ps">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Renderer\Shader\PointDiffuseLighting.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Application.h" />
+    <ClInclude Include="Core\ApplicationConfig.h" />
+    <ClInclude Include="Core\ApplicationWindow.h" />
+    <ClInclude Include="Core\Clock.h" />
+    <ClInclude Include="Core\Core.h" />
+    <ClInclude Include="Core\Input\Input.h" />
+    <ClInclude Include="Core\Input\Windows\Input.h" />
+    <ClInclude Include="Core\Resources\ResManager.h" />
+    <ClInclude Include="Core\Resources\Resource.h" />
+    <ClInclude Include="Core\Resources\ResRefCount.h" />
+    <ClInclude Include="Core\Resources\Texture.h" />
+    <ClInclude Include="Core\Universe\IPortalAreaDetermination.h" />
+    <ClInclude Include="Core\Universe\Manager.h" />
+    <ClInclude Include="Core\Universe\Portal.h" />
+    <ClInclude Include="Core\Universe\PortalArea.h" />
+    <ClInclude Include="Core\Util\Assert.h" />
+    <ClInclude Include="Core\Util\ClassHelpers.h" />
+    <ClInclude Include="Core\Util\CRC32.h" />
+    <ClInclude Include="Core\Util\Log.h" />
+    <ClInclude Include="Core\Util\Misc.h" />
+    <ClInclude Include="Core\Util\Parser.h" />
+    <ClInclude Include="Entities\Camera.h" />
+    <ClInclude Include="Entities\Entities.h" />
+    <ClInclude Include="Entities\Entity3D.h" />
+    <ClInclude Include="Entities\IEntity.h" />
+    <ClInclude Include="Entities\Light.h" />
+    <ClInclude Include="Entities\Modifier.h" />
+    <ClInclude Include="Gae.h" />
+    <ClInclude Include="Gifts\Gifts.h" />
+    <ClInclude Include="Gifts\Modifiers\FreeMovement.h" />
+    <ClInclude Include="Gifts\Quake4\BSPTree.h" />
+    <ClInclude Include="Gifts\Quake4\MapLoader.h" />
+    <ClInclude Include="Graphics\Geometry\AABB.h" />
+    <ClInclude Include="Graphics\Geometry\Frustum.h" />
+    <ClInclude Include="Graphics\Geometry\IndexBuffer.h" />
+    <ClInclude Include="Graphics\Geometry\Intersections.h" />
+    <ClInclude Include="Graphics\Geometry\Plane.h" />
+    <ClInclude Include="Graphics\Geometry\Procedural.h" />
+    <ClInclude Include="Graphics\Geometry\ShadowVolume.h" />
+    <ClInclude Include="Graphics\Geometry\Sphere.h" />
+    <ClInclude Include="Graphics\Geometry\VertexBuffer.h" />
+    <ClInclude Include="Graphics\Geometry\VertexTypes.h" />
+    <ClInclude Include="Graphics\Graphics.h" />
+    <ClInclude Include="Graphics\Material.h" />
+    <ClInclude Include="Graphics\Mesh.h" />
+    <ClInclude Include="Graphics\MultiMesh.h" />
+    <ClInclude Include="Graphics\Node.h" />
+    <ClInclude Include="Renderer\DirectX9.h" />
+    <ClInclude Include="Renderer\Driver.h" />
+    <ClInclude Include="Renderer\IDrawDebug.h" />
+    <ClInclude Include="Renderer\OpenGL.h" />
+    <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\Extern\ksignal\lib\ksignal.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gae.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,11 @@
+ - Basic input system, nodes, material and textures.
+ - Parser for Quake4 maps written.
+ - Added loader for Quake4 maps.
+ - Added basic shader for diffuse mapping.
+ - Added basic shader for diffuse + specular mapping.
+ - Added basic shader with a parallel light.
+ - Added basic shader with a point light.
+ - Added basic shader with a point light + normal mapping.
+ - Added basic shader with a point light + parallax mapping (needs a quake4 mod with addapted textures).
+
+ - NEXT: Add a method to generate heighmaps starting from normal maps to implement parallax mapping without the need of using the mod.
