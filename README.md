@@ -9,6 +9,8 @@ Features implemented include:
 * Multi camera system.
 * Diverse debug rendering for lights, volumes, portals, camera frustum culling, etc...
 
+You can see some videos showing the [camera frustum culling](https://youtu.be/fwfG00mvYSA), [portals](https://youtu.be/gIwVuRYhEbg) and [end result](https://www.youtube.com/watch?v=S_YFht4vvbI). Sorry for the poor quality of the videos but my MacMini back then couldn't cope with recording and rendering at the same time at a decent FPS.
+
 # About
 Everything started as an attempt to learn DirectX programming since my background back then consisted of J2ME game programming (the cut version of Java for Mobile phones) and Nintendo DS.
 My only help was the help files of DirectX and some internet forums but... did you know that even back then it was already difficult to find useful information in internet? ;)
