@@ -21,6 +21,8 @@ Additionally I came across with a set of textures (wulfen texture pack) that inc
 
 This repository contains solution and project files adapted to work with Visual Studio 2019 and the old VS2008/2010 platform toolsets so if you want to build it its up to you to configure the environment in order to build it yourself.
 
+The entire code was developed back then using Windows XP in a hacked MacMini that had an integrated nVidia card with shared system memory. I was lucky since it supported the Shader Model 3 so developing shaders was kind of pleasant in comparison with older versions although due to the graphic performance I had to optimize everything as much as possible.
+
 # Building
 You need Visual Studio 2019 with the old platform toolset vs2008/2010 and DirectX 9 latest SDK.
 
